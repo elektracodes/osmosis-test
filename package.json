@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "libxmljs": "^0.18.7",
+    "lodash": "^4.17.4",
     "node-gyp": "^3.6.2",
     "osmosis": "^1.1.4"
   },
