@@ -11,7 +11,7 @@ function open_page(url) {
     osmosis.get(url)
             .find('ul.entries div.entry > .wrapper')
             .set({
-                'buiness': 'ul.entries div.entry div.description h2 a',
+                'buiness': 'div.description h2 a',
                 'tel': '.phone span',
                 'category': 'div.description h3 a',
                 'fulladdress': '.details .address'
@@ -25,7 +25,8 @@ function open_page(url) {
 //            })
 
 
-        //   .paginate('div.directory-catalog-paging a.next')
+        //  .paginate('div.directory-catalog-paging a.next')
+          .paginate('div.directory-catalog-paging a.next')
             .data(function (l) {
                 json.push(l);
 
@@ -36,7 +37,7 @@ function open_page(url) {
             .error(console.log)
             .debug(console.log)
             .done(function () {
-                   console.log(json);
+              
                 var standardsList = _.uniqBy(json, 'tel');
                 console.log(standardsList);
                 xls = json2xls(standardsList);
@@ -44,6 +45,33 @@ function open_page(url) {
                 //    open_page('https://www.google.co.in/' + nextLink);
             })
 }
+
+var myArray = [{
+    "urlTag": "Google",
+        "urlTitle": "Users",
+        "status": 6,
+        "nested": {
+        "id": 2,
+            "title": "http:\/\/www.google.com",
+    }
+}, {
+    "urlTag": "Bing",
+        "tabTitle": "BingUsers"
+}, {
+    "urlTag": "Yahoo1",
+        "tabTitle": "BingUsers"
+}];
+
+
+
+var arr = [{'a':'a'}, {'b':'b'},{'sfsdf':'a'},{'c':'c'}];    
+
+while(_.find(myArray, {'urlTag':'Yahoo1'})){
+  (_.find(myArray, {'urlTag':'Yahoo1'})).urlTag = 'x';
+}
+
+console.log(myArray);
+
 
 function write(data) {
     fs.writeFileSync('nty4athens.xlsx', data, 'binary');
